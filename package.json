@@ -5,8 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js",
-    "dev": "nodemon index.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +20,8 @@
   },
   "devDependencies": {
     "dotenv": "^9.0.2"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
