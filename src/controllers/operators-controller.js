@@ -19,7 +19,8 @@ function operatorsController(app, pool) {
 
     app.put('/operators/:id', (req, res) => {
         const id = req.params.id
-        DAO.modifyOperator(id)
+        const body = req.body
+        DAO.modifyOperator(id, body)
             .then(operator => res.status(200).send(operator))
             .catch(err =>  res.status(404).send(err))
     })

@@ -38,8 +38,8 @@ module.exports = class OperatorsDAO {
 
     modifyOperator(id, body) {
         return new Promise((res, rej) => {
-            this.pool.query('UPDATE operators SET name = $1, email = $2, type = $3 WHERE id = $4'
-            , [body.name, body.email, body.type, id]
+            this.pool.query('UPDATE operators SET name = $1, email = $2, password = $3, type = $4 WHERE id = $5'
+            , [body.name, body.email, body.password, body.type, id]
             , (err) => {
                 if(err) rej('Falha ao alterar o operador')
                 else res('Operador alterado com sucesso')
