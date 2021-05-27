@@ -17,6 +17,13 @@ function operatorsController(app, pool) {
             .catch(err => res.status(404).send(err))
     })
 
+    app.put('/operators/:id', (req, res) => {
+        const id = req.params.id
+        DAO.modifyOperator(id)
+            .then(operator => res.status(200).send(operator))
+            .catch(err =>  res.status(404).send(err))
+    })
+
     app.post('/operators', (req, res) => {
         const body = req.body
         const password = encryptPassword(body.password)
