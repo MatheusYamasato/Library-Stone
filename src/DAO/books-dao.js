@@ -6,7 +6,7 @@ module.exports = class BooksDAO {
     
     getBooks() {
         return new Promise((res, rej) => {
-            this.pool.query('SELECT * FROM books',
+            this.pool.query('SELECT * FROM books ORDER BY id ASC',
             (err, books) => {
                 if(err) rej(err) 
                 else res(books) 
@@ -49,8 +49,8 @@ module.exports = class BooksDAO {
 
     modifyBook(book, body) {
         return new Promise((res, rej) => {
-            this.pool.query('UPDATE books SET title = $1, author = $2, price = $3 WHERE id = $4'
-            , [body.title, body.author, body.price, book]
+            this.pool.query('UPDATE books SET image = $1, title = $2, author = $3, price = $4 WHERE id = $5'
+            , [body.image, body.title, body.author, body.price, book]
             , (err) => {
                 if(err) rej('Falha ao alterar o livro')
                 else res('Livro alterado com sucesso')

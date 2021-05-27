@@ -6,7 +6,7 @@ module.exports = class SalesDAO {
 
     getSales() {
         return new Promise((res, rej) => {
-            this.pool.query('SELECT * FROM sales',
+            this.pool.query('SELECT * FROM sales ORDER BY id ASC',
             (err, sales) => {
                 if(err) rej(err)     
                 else res(sales) 

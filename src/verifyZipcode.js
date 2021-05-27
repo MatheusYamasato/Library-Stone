@@ -7,5 +7,3 @@ async function verifyZipcode(zipCode) {
         console.log(data);
     
 }
-
-verifyZipcode('09090640')

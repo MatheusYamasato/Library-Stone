@@ -6,7 +6,7 @@ module.exports = class OperatorsDAO {
     
     getOperators() {
         return new Promise((res, rej) => {
-            this.pool.query('SELECT id, name, email FROM operators',
+            this.pool.query('SELECT id, name, email FROM operators ORDER BY id ASC',
             (err, operators) => {
                 if(err) rej(err) 
                 else res(operators) 

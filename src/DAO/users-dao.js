@@ -6,7 +6,7 @@ module.exports = class UsersDAO {
 
     getUsers() {
         return new Promise((res, rej) => {
-            this.pool.query('SELECT * FROM users',
+            this.pool.query('SELECT * FROM users ORDER BY id ASC',
             (err, user) => {
                 if(err) rej(err)     
                 else res(user) 

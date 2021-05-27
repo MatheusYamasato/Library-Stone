@@ -37,7 +37,7 @@ function booksController(app, pool) {
         const id = req.params.id
         const body = req.body
         DAO.modifyBook(id, body)
-            .then(book => res.status(200).send(`${book} alterado com sucesso`))
+            .then(book => res.status(200).send(book))
             .catch(err => res.status(404).send(err))
     })
 

@@ -9,7 +9,7 @@ const usersController = require('./controllers/users-controller')
 const operatorsController = require('./controllers/operators-controller')
 
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
 booksController(app, pool)
