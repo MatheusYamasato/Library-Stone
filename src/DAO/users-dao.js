@@ -37,10 +37,10 @@ module.exports = class UsersDAO {
         })
     }
 
-    modifyUser(user, body) {
+    modifyUser(id, body) {
         return new Promise((res, rej) => {
-            this.pool.query('UPDATE users SET name = $1, email = $2, zipcode = $3 WHERE ID = $4'
-            , [body.name, body.email, body.zipCode, user ]
+            this.pool.query('UPDATE users SET name = $1, email = $2, zipcode = $3 WHERE id = $4'
+            , [body.name, body.email, body.zipCode, id]
             , (err) => {
                 if(err) rej('Falha ao alterar o usuário')
                 else res('Usuário alterado com sucesso')

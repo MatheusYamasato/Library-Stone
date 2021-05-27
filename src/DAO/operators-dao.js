@@ -6,7 +6,7 @@ module.exports = class OperatorsDAO {
     
     getOperators() {
         return new Promise((res, rej) => {
-            this.pool.query('SELECT id, name, email FROM operators ORDER BY id ASC',
+            this.pool.query('SELECT  id, name, email, type FROM operators ORDER BY id ASC ',
             (err, operators) => {
                 if(err) rej(err) 
                 else res(operators) 
@@ -27,11 +27,22 @@ module.exports = class OperatorsDAO {
 
     insertOperator(operator) {
         return new Promise((res, rej) => {
-            this.pool.query('INSERT INTO operators (name, email, password) VALUES ($1, $2, $3)'
-            , [operator.name, operator.email, operator.password]
+            this.pool.query('INSERT INTO operators (name, email, password, type) VALUES ($1, $2, $3, $4)'
+            , [operator.name, operator.email, operator.password, operator.type]
             , (err) => {
                 if(err) rej('Falha ao inserir o operador')
                 else res('Operador inserido com sucesso')
+            })
+        })
+    }
+
+    modifyOperator(id, body) {
+        return new Promise((res, rej) => {
+            this.pool.query('UPDATE operators SET name = $1, email = $2, password = $3, type = $4 WHERE id = $5'
+            , [body.name, body.email, body.password, body.type, id]
+            , (err) => {
+                if(err) rej('Falha ao alterar o livro')
+                else res('Livro alterado com sucesso')
             })
         })
     }
@@ -46,4 +57,13 @@ module.exports = class OperatorsDAO {
             })
         })
     }
+
+    // verifyLogin() {
+    //     return new Promise((res,res) => {
+    //         this.pool.query('')
+
+
+
+    //     })
+    // }
 }

@@ -47,10 +47,10 @@ module.exports = class BooksDAO {
         })
     }
 
-    modifyBook(book, body) {
+    modifyBook(id, body) {
         return new Promise((res, rej) => {
-            this.pool.query('UPDATE books SET image = $1, title = $2, author = $3, price = $4 WHERE id = $5'
-            , [body.image, body.title, body.author, body.price, book]
+            this.pool.query('UPDATE books SET image = $1, title = $2, author = $3, category = $4, price = $5 WHERE id = $6'
+            , [body.image, body.title, body.author, body.category, body.price, id]
             , (err) => {
                 if(err) rej('Falha ao alterar o livro')
                 else res('Livro alterado com sucesso')

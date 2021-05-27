@@ -1,8 +1,8 @@
 const UsersModel = require('../models/users-model')
 const UsersDAO = require('../DAO/users-dao')
 
-function salesController(app, db) {
-    const DAO = new UsersDAO(db)
+function salesController(app, pool) {
+    const DAO = new UsersDAO(pool)
     app.get('/users', (req, res) => {
         DAO.getUsers()
             .then(users => res.status(200).send(users.rows))
@@ -28,7 +28,7 @@ function salesController(app, db) {
         const id = req.params.id
         const body = req.body
         DAO.modifyUser(id, body)
-            .then(sale => res.status(200).send(`O usuário foi alterado com sucesso`))
+            .then(sale => res.status(200).send(sale))
             .catch(err => res.status(404).send(err))
     })
 

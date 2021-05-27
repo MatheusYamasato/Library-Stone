@@ -20,7 +20,7 @@ function operatorsController(app, pool) {
     app.post('/operators', (req, res) => {
         const body = req.body
         const password = encryptPassword(body.password)
-        const operator = new OperatorsModel(0, body.name, body.email, password)    
+        const operator = new OperatorsModel(0, body.name, body.email, password, body.type)    
         DAO.insertOperator(operator)
             .then(operator => res.status(201).send(operator))
             .catch(err => res.status(404).send(err))
@@ -29,7 +29,14 @@ function operatorsController(app, pool) {
     app.delete('/operators/:id', (req, res) => {
         const id = req.params.id
         DAO.deleteOperator(id)
-            .then(operator => res.status(200).send(`Livro removido com sucesso`))
+            .then(operator => res.status(200).send(operator))
+            .catch(err =>  res.status(404).send(err))
+    })
+
+    app.put('/operators/:id', (req, res) => {
+        const id = req.params.id
+        DAO.modifyOperator(id)
+            .then(operator => res.status(200).send(operator))
             .catch(err =>  res.status(404).send(err))
     })
 }
