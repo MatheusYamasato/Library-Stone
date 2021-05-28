@@ -50,8 +50,8 @@ module.exports = class SalesDAO {
 
     modifySale(sale, body) {
         return new Promise((res, rej) => {
-            this.pool.query('UPDATE sales SET status = $1 WHERE id = $2'
-            , [body.status, sale]
+            this.pool.query('UPDATE sales SET status = $1, price = $2, id_book = $3, id_user = 4 WHERE id = $5'
+            , [body.status, body.price, body.id_book, body.id_user, sale]
             , (err) => {
                 if(err) rej('Falha ao alterar a venda')
                 else res('Venda alterada com sucesso')

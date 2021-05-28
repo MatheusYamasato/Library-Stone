@@ -58,19 +58,19 @@ module.exports = class OperatorsDAO {
         })
     }
 
-    verifyLogin(body) {
-        return new Promise((res,rej) => {
-            this.pool.query('SELECT (password) from operators WHERE email = $1'
-            , [body.email]
-            , (err, results) => {
-                console.log(results.rows[0].password);
-                if(err) rej(err)
-                if(results.rows[0].password == body.password) {
-                    res('Login realizado')
-                } else {
-                    rej('Credenciais incorretas')
-                }
-            })
-        })
-    }
+    // verifyLogin(body) {
+    //     return new Promise((res,rej) => {
+    //         this.pool.query('SELECT (password) from operators WHERE email = $1'
+    //         , [body.email]
+    //         , (err, results) => {
+    //             console.log(results.rows[0].password);
+    //             if(err) rej(err)
+    //             if(results.rows[0].password == body.password) {
+    //                 res('Login realizado')
+    //             } else {
+    //                 rej('Credenciais incorretas')
+    //             }
+    //         })
+    //     })
+    // }
 }
