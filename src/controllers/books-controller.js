@@ -44,7 +44,7 @@ function booksController(app, pool) {
     app.delete('/books/:id', (req, res) => {
         const id = req.params.id
         DAO.deleteBook(id)
-            .then(book => res.status(200).send(`Livro removido com sucesso`))
+            .then(book => res.status(200).send(book))
             .catch(err =>  res.status(404).send(err))
     })
 }

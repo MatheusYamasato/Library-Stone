@@ -19,6 +19,7 @@ function salesController(app, pool) {
     app.post('/users', (req, res) => {
         const body = req.body   
         const user = new UsersModel(0, body.name, body.email, body.zipCode)
+        
         DAO.insertUser(user)
             .then(user => res.status(201).send(user))
             .catch(err => res.status(404).send(err))
@@ -35,8 +36,8 @@ function salesController(app, pool) {
     app.delete('/users/:id', (req, res) => {
         const { id } = req.params
         DAO.deleteUser(id)
-            .then(user => res.status(200).send(`Usuário removido com sucesso`))
-            .catch(err =>  res.status(404).send(`Falha ao remover o usuário`))
+            .then(user => res.status(200).send(user))
+            .catch(err =>  res.status(404).send(err))
     })
 }
 

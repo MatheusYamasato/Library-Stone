@@ -60,11 +60,16 @@ module.exports = class OperatorsDAO {
 
     verifyLogin(body) {
         return new Promise((res,rej) => {
-            this.pool.query('INSERT INTO operators (email, password) values ($1, $2)'
-            , [body.email, body.password]
-            , (err) => {
-                if(err) rej('Falha ao realizar o login')
-                else res('Login realizado com sucesso')
+            this.pool.query('SELECT (password) from operators WHERE email = $1'
+            , [body.email]
+            , (err, results) => {
+                console.log(results.rows[0].password);
+                if(err) rej(err)
+                if(results.rows[0].password == body.password) {
+                    res('Login realizado')
+                } else {
+                    rej('Credenciais incorretas')
+                }
             })
         })
     }

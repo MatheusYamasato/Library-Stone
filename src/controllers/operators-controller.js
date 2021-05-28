@@ -40,9 +40,7 @@ function operatorsController(app, pool) {
     })
 
     app.post('/operators/login', (req, res) => {
-        const email = req.body.email
-        const password = req.body.password
-        if(!email || !password)
+        const body = req.body
         DAO.verifyLogin(body)
             .then(sucess => res.status(200).send(sucess))
             .catch(err => res.status(404).send(err))
