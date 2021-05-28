@@ -49,7 +49,7 @@ module.exports = class OperatorsDAO {
 
     deleteOperator(operator) {
         return new Promise((res, rej) => {
-            this.pool.query('DELETE FROM operators WHERE id = $1'
+            this.pool.query('DELETE * FROM operators WHERE id = $1'
             , [operator]
             , (err) => {
                 if(err) rej('Falha ao deletar o operador')
@@ -58,12 +58,14 @@ module.exports = class OperatorsDAO {
         })
     }
 
-    // verifyLogin() {
-    //     return new Promise((res,res) => {
-    //         this.pool.query('')
-
-
-
-    //     })
-    // }
+    verifyLogin(body) {
+        return new Promise((res,rej) => {
+            this.pool.query('INSET INTO operators (email, password) values ($1, $2)'
+            , [body.email, body.password]
+            , (err) => {
+                if(err) rej('Falha ao realizar o login')
+                else res('Login realizado com sucesso')
+            })
+        })
+    }
 }

@@ -18,7 +18,7 @@ function operatorsController(app, pool) {
     })
 
     app.put('/operators/:id', (req, res) => {
-        const id = req.params.id
+        const id = parseInt(req.params.id)
         const body = req.body
         DAO.modifyOperator(id, body)
             .then(operator => res.status(200).send(operator))
@@ -41,11 +41,13 @@ function operatorsController(app, pool) {
             .catch(err =>  res.status(404).send(err))
     })
 
-    app.put('/operators/:id', (req, res) => {
-        const id = req.params.id
-        DAO.modifyOperator(id)
-            .then(operator => res.status(200).send(operator))
-            .catch(err =>  res.status(404).send(err))
+    app.post('/operators/login', (req, res) => {
+        const email = req.body.email
+        const password = req.body.password
+        if(!email || !password)
+        DAO.verifyLogin(body)
+            .then(sucess => res.status(200).send(sucess))
+            .catch(err => res.status(404).send(err))
     })
 }
 
