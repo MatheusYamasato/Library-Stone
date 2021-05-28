@@ -60,7 +60,7 @@ module.exports = class OperatorsDAO {
 
     verifyLogin(body) {
         return new Promise((res,rej) => {
-            this.pool.query('INSET INTO operators (email, password) values ($1, $2)'
+            this.pool.query('INSERT INTO operators (email, password) values ($1, $2)'
             , [body.email, body.password]
             , (err) => {
                 if(err) rej('Falha ao realizar o login')

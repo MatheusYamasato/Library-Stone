@@ -1,6 +1,5 @@
 const OperatorsModel = require('../models/operators-model')
 const OperatorsDAO = require('../DAO/operators-dao')
-const { encryptPassword } = require('../config/encryptPassword')
 
 function operatorsController(app, pool) {
     const DAO = new OperatorsDAO(pool)
@@ -27,8 +26,7 @@ function operatorsController(app, pool) {
 
     app.post('/operators', (req, res) => {
         const body = req.body
-        const password = encryptPassword(body.password)
-        const operator = new OperatorsModel(0, body.name, body.email, password, body.type)    
+        const operator = new OperatorsModel(0, body.name, body.email, body.password , body.type)    
         DAO.insertOperator(operator)
             .then(operator => res.status(201).send(operator))
             .catch(err => res.status(404).send(err))
