@@ -1,4 +1,4 @@
-module.exports = class BooksModel {
+export class BooksModel {
     constructor(id, image, title, author, category, price) {
         this.id = id;
         this.image = image;

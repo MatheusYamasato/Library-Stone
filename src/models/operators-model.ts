@@ -1,4 +1,4 @@
-module.exports = class OperatorsModel {
+export class OperatorsModel {
     constructor(id, name, email, password, type) {
         this.id = id;
         this.name = name;
