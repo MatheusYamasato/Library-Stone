@@ -1,4 +1,4 @@
-module.exports = class SalesModel {
+export class SalesModel {
     constructor(id, status, price, id_book, id_user) {
         this.id = id;
         this.status = status;

@@ -1,4 +1,4 @@
-module.exports = class UsersModel {
+export class UsersModel {
     constructor(id, name, email, zipCode) {
         this.id = id;
         this.name = name;

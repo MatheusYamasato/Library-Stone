@@ -1,7 +1,7 @@
 const SalesModel = require('../models/sales-model')
 const SalesDAO = require('../DAO/sales-dao')
 
-function salesController(app, db) {
+export function salesController(app, db) {
     const DAO = new SalesDAO(db)
     app.get('/sales', (req, res) => {
         DAO.getSales()
@@ -10,21 +10,21 @@ function salesController(app, db) {
     })
 
     app.get('/sales/:id', (req, res) => {
-        const {id} = req.params
+        const { id } = req.params
         DAO.getSaleById(id)
             .then(sale => res.status(200).send(sale.rows))
             .catch(err => res.send(err))
     })
 
     app.get('/sales/:status', (req, res) => {
-        const {status} = req.params
+        const { status } = req.params
         DAO.getSaleByStatus(status)
             .then(sale => res.status(200).send(sale.rows))
             .catch(err => res.status(404).send(err))
     })
 
     app.post('/sales', (req, res) => {
-        const body = req.body   
+        const body = req.body
         const sale = new SalesModel(0, body.status, body.price, body.id_books, body.id_user)
         DAO.insertSale(sale)
             .then(sale => res.status(201).send(sale))
@@ -47,5 +47,3 @@ function salesController(app, db) {
 
     })
 }
-
-module.exports = salesController;
